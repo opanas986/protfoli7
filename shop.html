@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ТехМарт — цифровий магазин</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{
+  --bg:#0b0b12;--bg2:#111119;--bg3:#1a1a26;--card:#15151e;--border:#24243a;
+  --accent:#7c6fff;--a2:#ff5f7e;--a3:#3ddba0;
+  --txt:#f0f0ff;--txt2:#8888a8;--txt3:#505068;
+  --r:14px;--rs:8px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(11,11,18,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.hi{max-width:1380px;margin:0 auto;padding:0 18px;height:62px;display:flex;align-items:center;gap:16px}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;text-decoration:none;color:var(--txt);white-space:nowrap}
+.logo b{color:var(--accent)}
+.sb{flex:1;max-width:440px;position:relative}
+.sb input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:50px;padding:9px 16px 9px 38px;color:var(--txt);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+.sb input:focus{border-color:var(--accent)}
+.sb input::placeholder{color:var(--txt3)}
+.si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--txt3);font-size:14px}
+.cbtn{background:var(--accent);border:none;border-radius:50px;padding:9px 16px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;transition:transform .15s,box-shadow .15s;font-family:'Inter',sans-serif;margin-left:auto;white-space:nowrap}
+.cbtn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,111,255,.4)}
+.cc{background:var(--a2);color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+/* NAV */
+.nav{background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-in{max-width:1380px;margin:0 auto;padding:0 18px;display:flex}
+.nt{padding:12px 16px;font-size:12.5px;font-weight:500;color:var(--txt2);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:5px}
+.nt:hover{color:var(--txt)}
+.nt.active{color:var(--accent);border-bottom-color:var(--accent)}
+/* LAYOUT */
+.main{max-width:1380px;margin:0 auto;padding:22px 18px;display:grid;grid-template-columns:220px 1fr;gap:22px}
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:16px}
+.fb{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.ft{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:11px}
+.pinp{display:flex;gap:6px}
+.pinp input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:7px 9px;color:var(--txt);font-size:12px;font-family:'Inter',sans-serif;outline:none;width:100%}
+.pinp input:focus{border-color:var(--accent)}
+.fo{display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer;font-size:13px;color:var(--txt2);transition:color .2s}
+.fo:hover{color:var(--txt)}
+.fo input[type=checkbox]{width:14px;height:14px;accent-color:var(--accent);cursor:pointer}
+.sc{border-radius:var(--r);padding:15px;cursor:pointer;transition:transform .2s;margin-top:2px}
+.sc:hover{transform:translateY(-2px)}
+.sc .sl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;opacity:.7;margin-bottom:4px}
+.sc .sn{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700}
+.sc .sk{font-size:11px;opacity:.65;margin-top:3px}
+/* HERO */
+.hero{background:linear-gradient(135deg,#151530,#1a1040 50%,#0f2a50);border:1px solid var(--border);border-radius:var(--r);padding:30px 34px;margin-bottom:22px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(124,111,255,.22),transparent 70%);pointer-events:none}
+.hbadge{display:inline-block;background:rgba(124,111,255,.16);border:1px solid rgba(124,111,255,.32);border-radius:50px;padding:3px 12px;font-size:11px;font-weight:600;color:var(--accent);margin-bottom:11px}
+.ht{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;line-height:1.2;margin-bottom:8px}
+.hs{font-size:13.5px;color:var(--txt2);max-width:340px;line-height:1.6}
+.hcta{margin-top:18px;display:flex;gap:9px}
+.bp{background:var(--accent);border:none;border-radius:50px;padding:10px 20px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:'Inter',sans-serif}
+.bp:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,111,255,.4)}
+.bghost{background:transparent;border:1px solid var(--border);border-radius:50px;padding:10px 20px;color:var(--txt2);font-size:13px;font-weight:500;cursor:pointer;transition:border-color .2s,color .2s;font-family:'Inter',sans-serif}
+.bghost:hover{border-color:var(--txt2);color:var(--txt)}
+/* BUILDER */
+.builder{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:17px;margin-bottom:22px}
+.btitle{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:13px}
+.presets{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
+.pb{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:6px 12px;color:var(--txt2);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.pb:hover{border-color:var(--accent);color:var(--accent)}
+.pb.active{border-color:var(--accent);background:rgba(124,111,255,.1);color:var(--accent)}
+.cp{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.cp::-webkit-scrollbar{display:none}
+.cpi{flex-shrink:0;width:72px;text-align:center;cursor:pointer}
+.cpi:hover .cpimg{border-color:var(--accent)}
+.cpimg{width:72px;height:72px;border-radius:8px;border:2px solid var(--border);transition:border-color .2s;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cpn{font-size:9px;color:var(--txt3);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ctot{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.ctl{font-size:11px;color:var(--txt2)}
+.ctv{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--a3)}
+.aab{background:linear-gradient(135deg,var(--a3),#00b09b);border:none;border-radius:9px;padding:10px 18px;color:#082a1a;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:transform .15s}
+.aab:hover{transform:scale(1.03)}
+/* CHIPS */
+.chips{display:flex;gap:8px;margin-bottom:18px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:7px 13px;font-size:12px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(124,111,255,.07)}
+.chip.active{border-color:var(--accent);color:var(--accent);background:rgba(124,111,255,.1)}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+/* TOOLBAR */
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.rc{font-size:12.5px;color:var(--txt2)}
+.rc strong{color:var(--txt)}
+.ss{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:7px 11px;color:var(--txt2);font-size:12.5px;cursor:pointer;font-family:'Inter',sans-serif;outline:none}
+.ss:focus{border-color:var(--accent)}
+/* PRODUCT GRID */
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:13px}
+/* PRODUCT CARD */
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative}
+.pc:hover{border-color:rgba(124,111,255,.4);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.45)}
+.pba{position:absolute;top:8px;left:8px;z-index:2;font-size:10px;font-weight:700;padding:3px 7px;border-radius:50px;text-transform:uppercase;letter-spacing:.05em}
+.pba.sale{background:var(--a2);color:#fff}
+.pba.new{background:var(--a3);color:#082a1a}
+.pba.top{background:#ffaa00;color:#1a0a00}
+/* PRODUCT IMAGE */
+.pimg{width:100%;aspect-ratio:1;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;padding:10px}
+.pimg svg{width:80%;height:80%;transition:transform .3s}
+.pc:hover .pimg svg{transform:scale(1.07)}
+.pi2{padding:12px}
+.pbrand{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:3px}
+.pname{font-size:13px;font-weight:500;color:var(--txt);line-height:1.4;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.prat{display:flex;align-items:center;gap:5px;margin-bottom:8px}
+.stars{color:#ffaa00;font-size:11px}
+.rn{font-size:11px;color:var(--txt3)}
+.ppr{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.pblk{display:flex;flex-direction:column;gap:1px}
+.pold{font-size:11px;color:var(--txt3);text-decoration:line-through}
+.pnew{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--txt)}
+.pnew.disc{color:var(--a2)}
+.addbtn{background:var(--accent);border:none;border-radius:7px;width:33px;height:33px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer;transition:transform .15s,background .15s;flex-shrink:0}
+.addbtn:hover{transform:scale(1.12);background:#8f84ff}
+.addbtn.added{background:var(--a3);color:#082a1a}
+/* EMPTY */
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--txt3)}
+.empty .ei{font-size:44px;margin-bottom:11px}
+.empty h3{font-size:16px;color:var(--txt2);margin-bottom:6px}
+/* CART */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.cpanel{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100vh;background:var(--bg2);border-left:1px solid var(--border);z-index:201;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.32,.72,0,1)}
+.cpanel.open{transform:none}
+.ch{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ctitle{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700}
+.xb{background:var(--bg3);border:1px solid var(--border);border-radius:7px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--txt2);font-size:16px;transition:color .2s}
+.xb:hover{color:var(--txt)}
+.cilist{flex:1;overflow-y:auto;padding:13px 20px;display:flex;flex-direction:column;gap:9px}
+.cilist::-webkit-scrollbar{width:3px}
+.cilist::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.ci{display:flex;gap:11px;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:10px;align-items:center}
+.cithumb{width:54px;height:54px;border-radius:7px;background:var(--bg3);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:5px}
+.cithumb svg{width:100%;height:100%}
+.cii{flex:1;min-width:0}
+.cin{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.cip{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--accent)}
+.qc{display:flex;align-items:center;gap:6px;margin-top:6px}
+.qb{background:var(--bg3);border:1px solid var(--border);border-radius:5px;width:23px;height:23px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--txt2);font-size:14px;transition:all .2s}
+.qb:hover{border-color:var(--accent);color:var(--accent)}
+.qn{font-size:13px;font-weight:600;min-width:17px;text-align:center}
+.rb{background:none;border:none;cursor:pointer;color:var(--txt3);font-size:16px;padding:3px;transition:color .2s;flex-shrink:0}
+.rb:hover{color:var(--a2)}
+.cempty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;color:var(--txt3);text-align:center;gap:9px}
+.cempty .ei{font-size:42px}
+.cf{padding:17px 20px;border-top:1px solid var(--border)}
+.csub{display:flex;justify-content:space-between;margin-bottom:5px;font-size:12.5px;color:var(--txt2)}
+.ctot2{display:flex;justify-content:space-between;margin-bottom:16px;font-size:17px;font-weight:700;font-family:'Space Grotesk',sans-serif}
+.chkbtn{width:100%;background:var(--accent);border:none;border-radius:10px;padding:14px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:7px}
+.chkbtn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,111,255,.4)}
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(110px);background:var(--card);border:1px solid var(--a3);border-radius:50px;padding:10px 20px;font-size:13px;font-weight:500;color:var(--a3);z-index:300;transition:transform .35s cubic-bezier(.32,.72,0,1);box-shadow:0 8px 32px rgba(0,0,0,.4);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:860px){.main{grid-template-columns:1fr}.sidebar{display:none}.ht{font-size:20px}}
+@media(max-width:540px){.sb{display:none}.pg{grid-template-columns:repeat(2,1fr)}.cpanel{width:100vw}.hero{padding:20px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <a class="logo" href="#"><b>Тех</b>Март</a>
+    <div class="sb">
+      <span class="si">🔍</span>
+      <input type="text" id="sInput" placeholder="Пошук товарів..." oninput="doFilter()">
+    </div>
+    <button class="cbtn" onclick="openCart()">🛒 Кошик <span class="cc" id="cCount">0</span></button>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-in">
+    <button class="nt active" onclick="setCat('all',this)">🏠 Усі</button>
+    <button class="nt" onclick="setCat('pc',this)">🖥️ Комплектуючі</button>
+    <button class="nt" onclick="setCat('phones',this)">📱 Смартфони</button>
+    <button class="nt" onclick="setCat('audio',this)">🎧 Аудіо</button>
+    <button class="nt" onclick="setCat('gaming',this)">🎮 Геймпади</button>
+    <button class="nt" onclick="setCat('monitor',this)">🖥 Монітори</button>
+    <button class="nt" onclick="setCat('storage',this)">💾 Накопичувачі</button>
+    <button class="nt" onclick="setCat('periphery',this)">⌨️ Периферія</button>
+    <button class="nt" onclick="setCat('network',this)">📡 Мережа</button>
+    <button class="nt" onclick="setCat('smart',this)">🏠 Розумний дім</button>
+    <button class="nt" onclick="setCat('accessories',this)">🔌 Аксесуари</button>
+  </div>
+</nav>
+
+<div class="main">
+  <aside class="sidebar">
+    <div class="fb">
+      <div class="ft">Ціна (₴)</div>
+      <div class="pinp">
+        <input type="number" id="pMin" placeholder="від" oninput="doFilter()">
+        <input type="number" id="pMax" placeholder="до" oninput="doFilter()">
+      </div>
+    </div>
+    <div class="fb">
+      <div class="ft">Бренд</div>
+      <div id="brandF"></div>
+    </div>
+    <div class="fb">
+      <div class="ft">Наявність</div>
+      <label class="fo"><input type="checkbox" checked onchange="doFilter()"> В наявності</label>
+      <label class="fo"><input type="checkbox" onchange="doFilter()"> Тільки зі знижкою</label>
+    </div>
+    <div class="sc" style="background:linear-gradient(135deg,#7c6fff,#a855f7)" onclick="applyP('gaming_pc')">
+      <div class="sl">🔥 Хіт</div>
+      <div class="sn">Ігровий ПК</div>
+      <div class="sk">12 товарів · від 89 990 ₴</div>
+    </div>
+    <div class="sc" style="background:linear-gradient(135deg,#ff5f7e,#ff9966)" onclick="applyP('office_pc')">
+      <div class="sl">💼 Популярне</div>
+      <div class="sn">Робоче місце</div>
+      <div class="sk">8 товарів · від 34 990 ₴</div>
+    </div>
+    <div class="sc" style="background:linear-gradient(135deg,#3ddba0,#00b09b)" onclick="applyP('streaming')">
+      <div class="sl" style="color:rgba(0,40,25,.7)">🎙 Для стримера</div>
+      <div class="sn" style="color:#082a1a">Стримінг-сет</div>
+      <div class="sk" style="color:rgba(0,40,25,.6)">10 товарів · від 54 990 ₴</div>
+    </div>
+  </aside>
+
+  <div>
+    <div class="hero">
+      <div class="hbadge">🔥 Розпродаж — до 50% знижки</div>
+      <h1 class="ht">Найкращі гаджети<br>за чесними цінами</h1>
+      <p class="hs">Відеокарти, процесори, смартфони, периферія — усе в одному місці. Доставка за 1 день.</p>
+      <div class="hcta">
+        <button class="bp" onclick="document.getElementById('anchor').scrollIntoView({behavior:'smooth'})">Переглянути товари</button>
+        <button class="bghost" onclick="document.getElementById('bld').scrollIntoView({behavior:'smooth'})">Зібрати збірку</button>
+      </div>
+    </div>
+
+    <div class="builder" id="bld">
+      <div class="btitle">🛠 Готові збірки</div>
+      <div class="presets">
+        <button class="pb active" onclick="selPreset('gaming_pc',this)">🎮 Ігровий ПК</button>
+        <button class="pb" onclick="selPreset('office_pc',this)">💼 Офісний ПК</button>
+        <button class="pb" onclick="selPreset('streaming',this)">🎙 Стримінг</button>
+        <button class="pb" onclick="selPreset('budget',this)">💰 Бюджетна</button>
+        <button class="pb" onclick="selPreset('creator',this)">🎨 Творчість</button>
+      </div>
+      <div class="cp" id="cprev"></div>
+      <div class="ctot">
+        <div>
+          <div class="ctl">Вартість збірки</div>
+          <div class="ctv" id="cprice">—</div>
+        </div>
+        <button class="aab" onclick="addColl()">+ Додати все до кошика</button>
+      </div>
+    </div>
+
+    <div class="chips">
+      <button class="chip active" onclick="setCat('all',this,true)"><span class="dot"></span>Усі</button>
+      <button class="chip" onclick="setCat('pc',this,true)"><span class="dot"></span>Комплектуючі</button>
+      <button class="chip" onclick="setCat('phones',this,true)"><span class="dot"></span>Смартфони</button>
+      <button class="chip" onclick="setCat('audio',this,true)"><span class="dot"></span>Аудіо</button>
+      <button class="chip" onclick="setCat('gaming',this,true)"><span class="dot"></span>Геймпади</button>
+      <button class="chip" onclick="setCat('monitor',this,true)"><span class="dot"></span>Монітори</button>
+      <button class="chip" onclick="setCat('storage',this,true)"><span class="dot"></span>Накопичувачі</button>
+      <button class="chip" onclick="setCat('periphery',this,true)"><span class="dot"></span>Периферія</button>
+      <button class="chip" onclick="setCat('smart',this,true)"><span class="dot"></span>Розумний дім</button>
+    </div>
+
+    <div class="toolbar" id="anchor">
+      <div class="rc">Показано: <strong id="pcount">0</strong> товарів</div>
+      <select class="ss" onchange="sortP(this.value)">
+        <option value="def">За замовчуванням</option>
+        <option value="asc">Ціна ↑</option>
+        <option value="desc">Ціна ↓</option>
+        <option value="rat">За рейтингом</option>
+        <option value="name">За назвою</option>
+      </select>
+    </div>
+
+    <div class="pg" id="grid"></div>
+  </div>
+</div>
+
+<div class="overlay" id="ov" onclick="closeCart()"></div>
+<div class="cpanel" id="cpanel">
+  <div class="ch">
+    <div class="ctitle">🛒 Кошик</div>
+    <button class="xb" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cilist" id="cilist"></div>
+  <div class="cf">
+    <div class="csub"><span>Товари (<span id="cqty">0</span>)</span><span id="csub2">0 ₴</span></div>
+    <div class="csub"><span>Доставка</span><span style="color:var(--a3)">Безкоштовно</span></div>
+    <div class="ctot2"><span>Разом</span><span id="ctot3">0 ₴</span></div>
+    <button class="chkbtn" onclick="checkout()">💳 Оформити замовлення</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ── SVG ICONS ──────────────────────────────────────────────────
+const S={
+gpu:`<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="gg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6fff"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs>
+  <rect x="5" y="28" width="110" height="52" rx="8" fill="#1e1e38" stroke="url(#gg1)" stroke-width="2"/>
+  <rect x="14" y="36" width="38" height="34" rx="5" fill="url(#gg1)" opacity=".85"/>
+  <rect x="14" y="36" width="38" height="34" rx="5" fill="url(#gg1)" opacity=".15"/>
+  <circle cx="33" cy="53" r="10" fill="#0d0d20" opacity=".6"/>
+  <circle cx="33" cy="53" r="6" fill="url(#gg1)" opacity=".7"/>
+  <rect x="58" y="36" width="8" height="34" rx="3" fill="#2a2a4a"/>
+  <rect x="70" y="36" width="8" height="34" rx="3" fill="#2a2a4a"/>
+  <rect x="82" y="36" width="8" height="34" rx="3" fill="#2a2a4a"/>
+  <rect x="94" y="36" width="16" height="34" rx="3" fill="#2a2a4a"/>
+  <rect x="18" y="80" width="5" height="12" rx="2" fill="url(#gg1)"/>
+  <rect x="28" y="80" width="5" height="12" rx="2" fill="url(#gg1)"/>
+  <rect x="38" y="80" width="5" height="12" rx="2" fill="url(#gg1)"/>
+  <rect x="48" y="80" width="5" height="12" rx="2" fill="url(#gg1)"/>
+  <rect x="58" y="80" width="5" height="12" rx="2" fill="url(#gg1)"/>
+  <rect x="68" y="80" width="5" height="12" rx="2" fill="url(#gg1)"/>
+  <text x="102" y="57" text-anchor="middle" font-size="8" fill="#a0a0cc" font-family="monospace">GPU</text>
+</svg>`,
+
+cpu:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="cg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c6fff"/><stop offset="100%" stop-color="#3ddba0"/></linearGradient></defs>
+  <rect x="22" y="22" width="56" height="56" rx="7" fill="#1e1e38" stroke="#7c6fff" stroke-width="2"/>
+  <rect x="30" y="30" width="40" height="40" rx="5" fill="url(#cg1)" opacity=".9"/>
+  <rect x="34" y="34" width="32" height="32" rx="3" fill="#0d0d20"/>
+  <text x="50" y="55" text-anchor="middle" font-size="11" fill="#7c6fff" font-weight="bold" font-family="monospace">CPU</text>
+  <rect x="15" y="35" width="7" height="4" rx="2" fill="#7c6fff"/><rect x="15" y="44" width="7" height="4" rx="2" fill="#7c6fff"/>
+  <rect x="15" y="53" width="7" height="4" rx="2" fill="#7c6fff"/><rect x="15" y="62" width="7" height="4" rx="2" fill="#7c6fff"/>
+  <rect x="78" y="35" width="7" height="4" rx="2" fill="#7c6fff"/><rect x="78" y="44" width="7" height="4" rx="2" fill="#7c6fff"/>
+  <rect x="78" y="53" width="7" height="4" rx="2" fill="#7c6fff"/><rect x="78" y="62" width="7" height="4" rx="2" fill="#7c6fff"/>
+  <rect x="35" y="15" width="4" height="7" rx="2" fill="#7c6fff"/><rect x="44" y="15" width="4" height="7" rx="2" fill="#7c6fff"/>
+  <rect x="53" y="15" width="4" height="7" rx="2" fill="#7c6fff"/><rect x="62" y="15" width="4" height="7" rx="2" fill="#7c6fff"/>
+  <rect x="35" y="78" width="4" height="7" rx="2" fill="#7c6fff"/><rect x="44" y="78" width="4" height="7" rx="2" fill="#7c6fff"/>
+  <rect x="53" y="78" width="4" height="7" rx="2" fill="#7c6fff"/><rect x="62" y="78" width="4" height="7" rx="2" fill="#7c6fff"/>
+</svg>`,
+
+ram:`<svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="rg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7c6fff"/><stop offset="100%" stop-color="#3ddba0"/></linearGradient></defs>
+  <rect x="8" y="22" width="104" height="36" rx="5" fill="#1e1e38" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="14" y="27" width="12" height="26" rx="3" fill="url(#rg1)" opacity=".8"/>
+  <rect x="30" y="27" width="12" height="26" rx="3" fill="url(#rg1)" opacity=".65"/>
+  <rect x="46" y="27" width="12" height="26" rx="3" fill="url(#rg1)" opacity=".8"/>
+  <rect x="62" y="27" width="12" height="26" rx="3" fill="url(#rg1)" opacity=".65"/>
+  <rect x="78" y="27" width="12" height="26" rx="3" fill="url(#rg1)" opacity=".8"/>
+  <rect x="94" y="27" width="12" height="26" rx="3" fill="url(#rg1)" opacity=".65"/>
+  <rect x="22" y="58" width="5" height="14" rx="2" fill="#3a3a5a"/>
+  <rect x="36" y="58" width="5" height="14" rx="2" fill="#3a3a5a"/>
+  <rect x="50" y="58" width="5" height="14" rx="2" fill="#3a3a5a"/>
+  <rect x="64" y="58" width="5" height="14" rx="2" fill="#3a3a5a"/>
+  <rect x="78" y="58" width="5" height="14" rx="2" fill="#3a3a5a"/>
+  <text x="60" y="14" text-anchor="middle" font-size="8" fill="#7c6fff" font-family="monospace">DDR5</text>
+</svg>`,
+
+mobo:`<svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="6" y="6" width="98" height="98" rx="6" fill="#14142a" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="14" y="14" width="34" height="34" rx="5" fill="#1e1e3a" stroke="#7c6fff" stroke-width="1"/>
+  <text x="31" y="35" text-anchor="middle" font-size="9" fill="#7c6fff" font-weight="bold">CPU</text>
+  <rect x="54" y="14" width="22" height="14" rx="3" fill="#1e1e3a" stroke="#7c6fff" stroke-width="1"/>
+  <rect x="54" y="32" width="22" height="14" rx="3" fill="#1e1e3a" stroke="#7c6fff" stroke-width="1"/>
+  <rect x="80" y="14" width="22" height="14" rx="3" fill="#1e1e3a" stroke="#7c6fff" stroke-width="1"/>
+  <rect x="80" y="32" width="22" height="14" rx="3" fill="#1e1e3a" stroke="#7c6fff" stroke-width="1"/>
+  <rect x="14" y="56" width="88" height="10" rx="2" fill="#1e1e3a" stroke="#7c6fff" stroke-width=".8"/>
+  <rect x="14" y="72" width="88" height="10" rx="2" fill="#1e1e3a" stroke="#7c6fff" stroke-width=".8"/>
+  <rect x="14" y="88" width="40" height="14" rx="3" fill="#1e1e3a" stroke="#7c6fff" stroke-width=".8"/>
+  <rect x="60" y="88" width="42" height="14" rx="3" fill="#1e1e3a" stroke="#3ddba0" stroke-width=".8"/>
+  <line x1="31" y1="48" x2="31" y2="56" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="88" cy="52" r="4" fill="#3ddba0" opacity=".8"/>
+</svg>`,
+
+psu:`<svg viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6fff"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+  <rect x="8" y="12" width="94" height="66" rx="8" fill="#1e1e38" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="48" cy="45" r="22" fill="#141428" stroke="url(#pg1)" stroke-width="2"/>
+  <circle cx="48" cy="45" r="14" fill="#1e1e38"/>
+  <path d="M44 36 L52 36 L48 44 L54 44 L44 58 L46 48 L40 48Z" fill="#ffaa00"/>
+  <rect x="76" y="20" width="18" height="6" rx="2" fill="#3ddba0" opacity=".8"/>
+  <rect x="76" y="30" width="18" height="6" rx="2" fill="#3ddba0" opacity=".8"/>
+  <rect x="76" y="40" width="18" height="6" rx="2" fill="#ffaa00" opacity=".8"/>
+  <rect x="76" y="50" width="18" height="6" rx="2" fill="#ff5f7e" opacity=".8"/>
+  <rect x="76" y="60" width="18" height="6" rx="2" fill="#3ddba0" opacity=".8"/>
+  <text x="48" y="78" text-anchor="middle" font-size="8" fill="#a0a0cc">1000W PLATINUM</text>
+</svg>`,
+
+case_:`<svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="14" y="6" width="52" height="108" rx="7" fill="#1a1a30" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="20" y="14" width="38" height="60" rx="4" fill="#0d0d1e"/>
+  <rect x="21" y="15" width="36" height="58" rx="3" fill="#141428"/>
+  <rect x="24" y="18" width="30" height="52" rx="2" fill="#1a1a35" stroke="#7c6fff" stroke-width=".5" stroke-dasharray="4 3"/>
+  <circle cx="40" cy="88" r="7" fill="#1e1e38" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="40" cy="88" r="3" fill="#7c6fff"/>
+  <circle cx="26" cy="98" r="4" fill="#3ddba0"/>
+  <circle cx="36" cy="98" r="4" fill="#2a2a4a" stroke="#3a3a5a"/>
+  <rect x="44" y="95" width="14" height="6" rx="3" fill="#2a2a4a"/>
+  <circle cx="28" cy="28" r="8" fill="#1e1e38" stroke="#7c6fff" stroke-width="1"/>
+  <circle cx="28" cy="28" r="5" fill="#0d0d1e"/>
+  <circle cx="28" cy="28" r="3" fill="#7c6fff" opacity=".7"/>
+</svg>`,
+
+cooler:`<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="clg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6fff"/><stop offset="1" stop-color="#3ddba0"/></linearGradient></defs>
+  <circle cx="50" cy="50" r="38" fill="#1a1a30" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="50" cy="50" r="14" fill="#2a2a4a" stroke="url(#clg)" stroke-width="2"/>
+  <path d="M50 12 C56 26 56 38 50 38 C44 38 44 26 50 12Z" fill="url(#clg)" opacity=".85"/>
+  <path d="M88 50 C74 56 62 56 62 50 C62 44 74 44 88 50Z" fill="url(#clg)" opacity=".85"/>
+  <path d="M50 88 C44 74 44 62 50 62 C56 62 56 74 50 88Z" fill="url(#clg)" opacity=".85"/>
+  <path d="M12 50 C26 44 38 44 38 50 C38 56 26 56 12 50Z" fill="url(#clg)" opacity=".85"/>
+  <path d="M76 24 C68 36 60 42 56 38 C52 34 58 26 76 24Z" fill="url(#clg)" opacity=".7"/>
+  <path d="M76 76 C64 68 58 60 62 56 C66 52 74 58 76 76Z" fill="url(#clg)" opacity=".7"/>
+  <path d="M24 76 C32 64 40 58 44 62 C48 66 42 74 24 76Z" fill="url(#clg)" opacity=".7"/>
+  <path d="M24 24 C36 32 42 40 38 44 C34 48 26 42 24 24Z" fill="url(#clg)" opacity=".7"/>
+  <circle cx="50" cy="50" r="8" fill="url(#clg)"/>
+  <circle cx="50" cy="50" r="4" fill="#0d0d1e"/>
+</svg>`,
+
+phone:`<svg viewBox="0 0 70 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="phg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1a2a4a"/><stop offset="1" stop-color="#0d1a2e"/></linearGradient></defs>
+  <rect x="6" y="4" width="58" height="112" rx="12" fill="#1a1a30" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="10" y="10" width="50" height="100" rx="9" fill="url(#phg)"/>
+  <rect x="11" y="11" width="48" height="98" rx="8" fill="#0a1628"/>
+  <rect x="14" y="15" width="42" height="90" rx="6" fill="#112244"/>
+  <rect x="28" y="6" width="14" height="4" rx="2" fill="#2a2a4a"/>
+  <circle cx="22" cy="8" r="2" fill="#3a3a5a"/>
+  <circle cx="35" cy="108" r="5" fill="#1e1e38" stroke="#7c6fff" stroke-width="1"/>
+  <rect x="18" y="22" width="34" height="22" rx="4" fill="#1a3a6a" opacity=".8"/>
+  <rect x="18" y="50" width="16" height="16" rx="3" fill="#1e2e5a"/>
+  <rect x="38" y="50" width="14" height="16" rx="3" fill="#1e2e5a"/>
+  <rect x="18" y="70" width="34" height="5" rx="2" fill="#1e2e5a"/>
+  <rect x="18" y="79" width="24" height="5" rx="2" fill="#1e2e5a"/>
+  <circle cx="52" cy="26" r="6" fill="#0a1a30"/>
+  <circle cx="52" cy="26" r="4" fill="#2a3a6a"/>
+  <circle cx="52" cy="26" r="2" fill="#1a2a4a" stroke="#3a4a7a"/>
+</svg>`,
+
+headphones:`<svg viewBox="0 0 110 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="hpg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6fff"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+  <path d="M20 55 C20 26 90 26 90 55" stroke="url(#hpg)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <rect x="8" y="50" width="20" height="32" rx="8" fill="#1e1e38" stroke="url(#hpg)" stroke-width="1.5"/>
+  <rect x="82" y="50" width="20" height="32" rx="8" fill="#1e1e38" stroke="url(#hpg)" stroke-width="1.5"/>
+  <rect x="11" y="54" width="14" height="24" rx="6" fill="url(#hpg)" opacity=".55"/>
+  <rect x="85" y="54" width="14" height="24" rx="6" fill="url(#hpg)" opacity=".55"/>
+  <circle cx="18" cy="66" r="5" fill="#0d0d20"/>
+  <circle cx="92" cy="66" r="5" fill="#0d0d20"/>
+  <circle cx="18" cy="66" r="2.5" fill="url(#hpg)"/>
+  <circle cx="92" cy="66" r="2.5" fill="url(#hpg)"/>
+  <circle cx="55" cy="28" r="3" fill="url(#hpg)" opacity=".6"/>
+</svg>`,
+
+speaker:`<svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="spg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6fff"/><stop offset="1" stop-color="#3ddba0"/></linearGradient></defs>
+  <rect x="10" y="8" width="60" height="104" rx="10" fill="#1a1a30" stroke="url(#spg)" stroke-width="1.5"/>
+  <circle cx="40" cy="38" r="22" fill="#141428" stroke="url(#spg)" stroke-width="2"/>
+  <circle cx="40" cy="38" r="14" fill="#0d0d1e"/>
+  <circle cx="40" cy="38" r="8" fill="#1a1a35" stroke="url(#spg)" stroke-width="1"/>
+  <circle cx="40" cy="38" r="4" fill="url(#spg)"/>
+  <circle cx="40" cy="80" r="14" fill="#141428" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="40" cy="80" r="8" fill="#0d0d1e"/>
+  <circle cx="40" cy="80" r="4" fill="#7c6fff" opacity=".7"/>
+  <circle cx="22" cy="18" r="4" fill="#3ddba0"/>
+  <circle cx="58" cy="18" r="3" fill="#2a2a4a" stroke="#3a3a5a"/>
+  <rect x="18" y="100" width="44" height="4" rx="2" fill="#2a2a4a"/>
+</svg>`,
+
+gamepad:`<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="gpg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e1e38"/><stop offset="1" stop-color="#2a1a4a"/></linearGradient></defs>
+  <path d="M18 44 C18 30 30 24 42 24 L78 24 C90 24 102 30 102 44 L98 65 C96 76 84 80 76 72 L68 64 L52 64 L44 72 C36 80 24 76 22 65Z" fill="url(#gpg)" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="28" y="42" width="4" height="14" rx="2" fill="#7c6fff"/>
+  <rect x="22" y="48" width="16" height="4" rx="2" fill="#7c6fff"/>
+  <circle cx="80" cy="42" r="5" fill="#ff5f7e" opacity=".9"/>
+  <circle cx="89" cy="49" r="5" fill="#7c6fff" opacity=".9"/>
+  <circle cx="80" cy="56" r="5" fill="#3ddba0" opacity=".9"/>
+  <circle cx="71" cy="49" r="5" fill="#ffaa00" opacity=".9"/>
+  <rect x="50" y="30" width="20" height="5" rx="2" fill="#3a3a5a"/>
+  <circle cx="44" cy="56" r="9" fill="#2a1a4a" stroke="#3a3a5a" stroke-width="1"/>
+  <circle cx="76" cy="64" r="7" fill="#2a1a4a" stroke="#3a3a5a" stroke-width="1"/>
+  <rect x="56" y="43" width="8" height="5" rx="2" fill="#3a3a5a"/>
+  <rect x="70" y="43" width="8" height="5" rx="2" fill="#3a3a5a"/>
+</svg>`,
+
+monitor:`<svg viewBox="0 0 140 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="mng" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#112244"/><stop offset="1" stop-color="#1a3a6a"/></linearGradient>
+  <linearGradient id="mnb" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7c6fff" stop-opacity=".5"/><stop offset="1" stop-color="#3ddba0" stop-opacity=".5"/></linearGradient></defs>
+  <rect x="6" y="8" width="128" height="82" rx="8" fill="#1a1a30" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="10" y="12" width="120" height="74" rx="5" fill="#0a0a1e"/>
+  <rect x="11" y="13" width="118" height="72" rx="4" fill="url(#mng)"/>
+  <rect x="11" y="13" width="118" height="8" rx="4" fill="url(#mnb)" opacity=".6"/>
+  <rect x="20" y="26" width="40" height="28" rx="3" fill="#1a2a4a" opacity=".7"/>
+  <rect x="68" y="26" width="54" height="12" rx="2" fill="#1a2a4a" opacity=".5"/>
+  <rect x="68" y="42" width="40" height="12" rx="2" fill="#1a2a4a" opacity=".5"/>
+  <rect x="68" y="58" width="54" height="8" rx="2" fill="#1a2a4a" opacity=".4"/>
+  <rect x="20" y="60" width="40" height="4" rx="2" fill="#1a3a6a" opacity=".7"/>
+  <rect x="20" y="68" width="28" height="4" rx="2" fill="#1a3a6a" opacity=".5"/>
+  <text x="122" y="88" text-anchor="middle" font-size="5.5" fill="#3ddba0" font-family="monospace">4K</text>
+  <rect x="62" y="90" width="16" height="10" rx="2" fill="#2a2a4a"/>
+  <rect x="44" y="100" width="52" height="6" rx="3" fill="#2a2a4a" stroke="#7c6fff" stroke-width="1"/>
+  <circle cx="130" cy="88" r="3" fill="#3ddba0"/>
+</svg>`,
+
+ssd:`<svg viewBox="0 0 130 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="ssg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7c6fff"/><stop offset="1" stop-color="#3ddba0"/></linearGradient></defs>
+  <rect x="6" y="16" width="118" height="48" rx="7" fill="#1a1a30" stroke="url(#ssg)" stroke-width="1.5"/>
+  <rect x="12" y="22" width="60" height="36" rx="5" fill="#141428"/>
+  <rect x="16" y="26" width="22" height="12" rx="3" fill="#7c6fff" opacity=".7"/>
+  <rect x="16" y="42" width="22" height="12" rx="3" fill="#7c6fff" opacity=".5"/>
+  <rect x="42" y="26" width="22" height="12" rx="3" fill="#3ddba0" opacity=".5"/>
+  <rect x="42" y="42" width="22" height="12" rx="3" fill="#3ddba0" opacity=".7"/>
+  <rect x="76" y="22" width="42" height="36" rx="5" fill="#141428"/>
+  <rect x="80" y="26" width="34" height="7" rx="2" fill="#2a2a4a"/>
+  <rect x="80" y="37" width="34" height="7" rx="2" fill="#2a2a4a"/>
+  <rect x="80" y="48" width="22" height="5" rx="2" fill="#2a2a4a"/>
+  <text x="97" y="60" text-anchor="middle" font-size="6" fill="url(#ssg)" font-family="monospace">NVMe PCIe</text>
+  <circle cx="122" cy="22" r="4" fill="#3ddba0"/>
+</svg>`,
+
+hdd:`<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="14" width="104" height="62" rx="9" fill="#1a1a30" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="52" cy="45" r="26" fill="#141428" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="52" cy="45" r="18" fill="#1a1a30"/>
+  <circle cx="52" cy="45" r="10" fill="#141428" stroke="#7c6fff" stroke-width="1"/>
+  <circle cx="52" cy="45" r="5" fill="#7c6fff" opacity=".8"/>
+  <line x1="52" y1="19" x2="52" y2="27" stroke="#7c6fff" stroke-width="1" opacity=".4"/>
+  <line x1="70" y1="27" x2="64" y2="33" stroke="#7c6fff" stroke-width="1" opacity=".4"/>
+  <line x1="78" y1="45" x2="70" y2="45" stroke="#7c6fff" stroke-width="1" opacity=".4"/>
+  <circle cx="94" cy="24" r="5" fill="#3ddba0"/>
+  <rect x="86" y="22" width="5" height="8" rx="2" fill="#3a3a5a"/>
+  <text x="94" y="50" text-anchor="middle" font-size="7" fill="#a0a0cc" font-family="monospace">HDD</text>
+</svg>`,
+
+keyboard:`<svg viewBox="0 0 140 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="kbg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e1e38"/><stop offset="1" stop-color="#2a1a4a"/></linearGradient></defs>
+  <rect x="6" y="16" width="128" height="48" rx="9" fill="url(#kbg)" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="12" y="22" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="26" y="22" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="40" y="22" width="10" height="8" rx="2" fill="#7c6fff" opacity=".7"/>
+  <rect x="54" y="22" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="68" y="22" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="82" y="22" width="10" height="8" rx="2" fill="#3ddba0" opacity=".6"/>
+  <rect x="96" y="22" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="110" y="22" width="14" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="12" y="34" width="14" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="30" y="34" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="44" y="34" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="58" y="34" width="10" height="8" rx="2" fill="#ff5f7e" opacity=".7"/>
+  <rect x="72" y="34" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="86" y="34" width="10" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="100" y="34" width="24" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="12" y="46" width="18" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="34" y="46" width="68" height="8" rx="2" fill="#3a3a5a" stroke="#7c6fff" stroke-width=".7"/>
+  <rect x="106" y="46" width="18" height="8" rx="2" fill="#2a2a4a" stroke="#7c6fff" stroke-width=".7"/>
+</svg>`,
+
+mouse:`<svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="msg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e1e38"/><stop offset="1" stop-color="#2a1a4a"/></linearGradient></defs>
+  <path d="M18 50 C18 24 62 24 62 50 L62 80 C62 92 18 92 18 80Z" fill="url(#msg)" stroke="#7c6fff" stroke-width="1.5"/>
+  <line x1="40" y1="26" x2="40" y2="66" stroke="#7c6fff" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <rect x="20" y="28" width="19" height="22" rx="6" fill="#7c6fff" opacity=".25"/>
+  <rect x="41" y="28" width="19" height="22" rx="6" fill="#7c6fff" opacity=".35"/>
+  <rect x="35" y="40" width="10" height="18" rx="5" fill="#2a2a4a" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="40" cy="48" r="3" fill="#7c6fff"/>
+  <ellipse cx="40" cy="72" rx="14" ry="10" fill="#2a2a4a" opacity=".5"/>
+</svg>`,
+
+router:`<svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="rtg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e1e38"/><stop offset="1" stop-color="#2a1a4a"/></linearGradient></defs>
+  <rect x="16" y="58" width="88" height="30" rx="8" fill="url(#rtg)" stroke="#7c6fff" stroke-width="1.5"/>
+  <line x1="36" y1="58" x2="24" y2="18" stroke="#7c6fff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="60" y1="58" x2="60" y2="14" stroke="#3ddba0" stroke-width="3" stroke-linecap="round"/>
+  <line x1="84" y1="58" x2="96" y2="18" stroke="#7c6fff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="24" cy="15" r="5" fill="#7c6fff"/>
+  <circle cx="60" cy="12" r="6" fill="#3ddba0"/>
+  <circle cx="96" cy="15" r="5" fill="#7c6fff"/>
+  <circle cx="34" cy="73" r="5" fill="#3ddba0"/>
+  <circle cx="48" cy="73" r="5" fill="#3ddba0"/>
+  <circle cx="62" cy="73" r="5" fill="#ffaa00"/>
+  <circle cx="76" cy="73" r="5" fill="#ff5f7e" opacity=".7"/>
+  <rect x="86" y="68" width="12" height="10" rx="3" fill="#2a2a4a"/>
+  <text x="60" y="90" text-anchor="middle" font-size="6" fill="#a0a0cc" font-family="monospace">WiFi 7</text>
+</svg>`,
+
+smarthome:`<svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="shg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6fff"/><stop offset="1" stop-color="#3ddba0"/></linearGradient></defs>
+  <path d="M55 12 L96 46 L90 46 L90 92 L20 92 L20 46 L14 46Z" fill="#1a1a30" stroke="url(#shg)" stroke-width="2"/>
+  <rect x="40" y="60" width="30" height="32" rx="5" fill="#1e1e38" stroke="#7c6fff" stroke-width="1"/>
+  <circle cx="55" cy="50" r="13" fill="#1e1e38" stroke="url(#shg)" stroke-width="2"/>
+  <path d="M49 50 L54 44 L57 50 L52 50 L55 56Z" fill="url(#shg)"/>
+  <circle cx="33" cy="62" r="7" fill="#7c6fff" opacity=".7"/>
+  <circle cx="77" cy="62" r="7" fill="#3ddba0" opacity=".7"/>
+  <circle cx="33" cy="76" r="5" fill="#ffaa00" opacity=".6"/>
+  <circle cx="77" cy="76" r="5" fill="#7c6fff" opacity=".6"/>
+  <rect x="46" y="66" width="18" height="20" rx="3" fill="#141428"/>
+</svg>`,
+
+powerbank:`<svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="pbg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#3ddba0"/><stop offset="1" stop-color="#7c6fff"/></linearGradient></defs>
+  <rect x="8" y="18" width="96" height="44" rx="10" fill="#1a1a30" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="104" y="30" width="10" height="20" rx="5" fill="#2a2a4a" stroke="#7c6fff" stroke-width="1"/>
+  <rect x="14" y="26" width="60" height="12" rx="4" fill="url(#pbg)" opacity=".85"/>
+  <rect x="74" y="26" width="22" height="12" rx="4" fill="#2a2a4a"/>
+  <text x="85" y="36" text-anchor="middle" font-size="7" fill="#505068" font-family="monospace">10000</text>
+  <rect x="14" y="44" width="82" height="10" rx="3" fill="#141428"/>
+  <circle cx="26" cy="49" r="4" fill="#3ddba0"/>
+  <circle cx="40" cy="49" r="4" fill="#7c6fff" opacity=".7"/>
+  <circle cx="54" cy="49" r="4" fill="#ffaa00" opacity=".6"/>
+  <circle cx="68" cy="49" r="4" fill="#2a2a4a" stroke="#3a3a5a"/>
+  <circle cx="82" cy="49" r="4" fill="#2a2a4a" stroke="#3a3a5a"/>
+  <text x="60" y="72" text-anchor="middle" font-size="7" fill="#a0a0cc">MagSafe 15W</text>
+</svg>`,
+
+charger:`<svg viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="chg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e1e38"/><stop offset="1" stop-color="#2a1a4a"/></linearGradient></defs>
+  <rect x="12" y="14" width="66" height="66" rx="14" fill="url(#chg)" stroke="#7c6fff" stroke-width="1.5"/>
+  <path d="M40 36 L52 36 L46 50 L54 50 L38 68 L40 54 L32 54Z" fill="#ffaa00"/>
+  <text x="45" y="28" text-anchor="middle" font-size="8" fill="#7c6fff" font-family="monospace">65W GaN</text>
+  <rect x="30" y="80" width="10" height="18" rx="5" fill="#2a2a4a" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="50" y="80" width="10" height="18" rx="5" fill="#2a2a4a" stroke="#7c6fff" stroke-width="1.5"/>
+  <circle cx="75" cy="18" r="6" fill="#3ddba0"/>
+  <text x="45" y="106" text-anchor="middle" font-size="6.5" fill="#a0a0cc">USB-C · USB-A</text>
+</svg>`,
+
+cable:`<svg viewBox="0 0 140 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="clg2" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7c6fff"/><stop offset=".5" stop-color="#3ddba0"/><stop offset="1" stop-color="#7c6fff"/></linearGradient></defs>
+  <rect x="6" y="26" width="22" height="18" rx="5" fill="#1e1e38" stroke="#7c6fff" stroke-width="1.5"/>
+  <rect x="112" y="26" width="22" height="18" rx="5" fill="#1e1e38" stroke="#3ddba0" stroke-width="1.5"/>
+  <rect x="8" y="30" width="18" height="10" rx="3" fill="#7c6fff" opacity=".5"/>
+  <rect x="114" y="30" width="18" height="10" rx="3" fill="#3ddba0" opacity=".5"/>
+  <path d="M28 35 Q50 12 70 35 Q90 58 112 35" stroke="url(#clg2)" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <text x="70" y="65" text-anchor="middle" font-size="8" fill="#a0a0cc">240W USB-C</text>
+</svg>`,
+};
+
+// ── PRODUCTS ──────────────────────────────────────────────────
+const P=[
+// КОМПЛЕКТУЮЧІ ПК
+{id:1,  name:'NVIDIA RTX 4090 24GB GDDR6X Founders',    brand:'NVIDIA',     price:159990,old:189990, cat:'pc',         badge:'sale',rating:4.9,rev:234, svg:'gpu'},
+{id:2,  name:'Intel Core i9-14900K 6.0 ГГц BOX',       brand:'Intel',      price:54990, old:null,   cat:'pc',         badge:'top', rating:4.8,rev:178, svg:'cpu'},
+{id:3,  name:'AMD Ryzen 9 7950X3D 4.2 ГГц',            brand:'AMD',        price:49990, old:59990,  cat:'pc',         badge:'sale',rating:4.9,rev:312, svg:'cpu'},
+{id:4,  name:'Corsair Dominator DDR5 64GB 6400 МГц',   brand:'Corsair',    price:24990, old:null,   cat:'pc',         badge:'new', rating:4.6,rev:89,  svg:'ram'},
+{id:5,  name:'G.Skill Trident Z5 RGB DDR5 32GB',       brand:'G.Skill',    price:14990, old:18990,  cat:'pc',         badge:'sale',rating:4.8,rev:201, svg:'ram'},
+{id:6,  name:'ASUS ROG STRIX Z790-E Gaming WiFi',      brand:'ASUS',       price:34990, old:39990,  cat:'pc',         badge:'sale',rating:4.8,rev:143, svg:'mobo'},
+{id:7,  name:'be quiet! Dark Power 13 1000W Platinum', brand:'be quiet!',  price:16990, old:null,   cat:'pc',         badge:null,  rating:4.9,rev:201, svg:'psu'},
+{id:8,  name:'Fractal Design Torrent Black ATX Tower', brand:'Fractal',    price:14990, old:17990,  cat:'pc',         badge:'sale',rating:4.7,rev:98,  svg:'case_'},
+{id:9,  name:'NZXT Kraken 360mm Elite LCD AIO',        brand:'NZXT',       price:12990, old:null,   cat:'pc',         badge:'new', rating:4.6,rev:67,  svg:'cooler'},
+{id:10, name:'AMD Radeon RX 7900 XTX 24GB',            brand:'AMD',        price:89990, old:99990,  cat:'pc',         badge:'sale',rating:4.7,rev:156, svg:'gpu'},
+// СМАРТФОНИ
+{id:11, name:'Apple iPhone 15 Pro Max 256GB Black',    brand:'Apple',      price:124990,old:134990, cat:'phones',     badge:'sale',rating:4.9,rev:1203,svg:'phone'},
+{id:12, name:'Samsung Galaxy S24 Ultra 512GB',         brand:'Samsung',    price:109990,old:null,   cat:'phones',     badge:'top', rating:4.8,rev:876, svg:'phone'},
+{id:13, name:'Google Pixel 9 Pro XL 256GB',            brand:'Google',     price:79990, old:89990,  cat:'phones',     badge:'sale',rating:4.7,rev:432, svg:'phone'},
+{id:14, name:'Xiaomi 14 Ultra 512GB Black',            brand:'Xiaomi',     price:89990, old:null,   cat:'phones',     badge:'new', rating:4.8,rev:234, svg:'phone'},
+{id:15, name:'OnePlus 12 256GB Flowy Emerald',         brand:'OnePlus',    price:64990, old:74990,  cat:'phones',     badge:'sale',rating:4.6,rev:321, svg:'phone'},
+{id:16, name:'Sony Xperia 1 VI 256GB Platinum',        brand:'Sony',       price:99990, old:null,   cat:'phones',     badge:'new', rating:4.7,rev:187, svg:'phone'},
+// АУДІО
+{id:17, name:'Sony WH-1000XM5 Чорний ANC',             brand:'Sony',       price:28990, old:34990,  cat:'audio',      badge:'sale',rating:4.9,rev:2341,svg:'headphones'},
+{id:18, name:'Apple AirPods Pro 2 USB-C',              brand:'Apple',      price:21990, old:24990,  cat:'audio',      badge:'sale',rating:4.8,rev:1876,svg:'headphones'},
+{id:19, name:'Sennheiser HD 800 S Reference',          brand:'Sennheiser', price:79990, old:null,   cat:'audio',      badge:'top', rating:4.9,rev:543, svg:'headphones'},
+{id:20, name:'JBL Charge 5 Синій 40Вт Bluetooth',     brand:'JBL',        price:12990, old:15990,  cat:'audio',      badge:'sale',rating:4.7,rev:1234,svg:'speaker'},
+{id:21, name:'Bose QuietComfort 45 Білий',             brand:'Bose',       price:24990, old:29990,  cat:'audio',      badge:'sale',rating:4.8,rev:789, svg:'headphones'},
+{id:22, name:'Razer BlackShark V2 Pro Wireless',       brand:'Razer',      price:14990, old:null,   cat:'audio',      badge:'new', rating:4.7,rev:432, svg:'headphones'},
+{id:23, name:'Sonos Era 300 Просторовий звук',         brand:'Sonos',      price:34990, old:39990,  cat:'audio',      badge:'sale',rating:4.8,rev:234, svg:'speaker'},
+// ГЕЙМПАДИ
+{id:24, name:'Sony DualSense Edge PS5 Чорний',         brand:'Sony',       price:12990, old:14990,  cat:'gaming',     badge:'sale',rating:4.9,rev:876, svg:'gamepad'},
+{id:25, name:'Xbox Series X Controller Carbon Black',  brand:'Microsoft',  price:6990,  old:null,   cat:'gaming',     badge:null,  rating:4.7,rev:1234,svg:'gamepad'},
+{id:26, name:'Nintendo Switch OLED Білий',             brand:'Nintendo',   price:31990, old:34990,  cat:'gaming',     badge:'sale',rating:4.8,rev:2341,svg:'gamepad'},
+{id:27, name:'Logitech F710 Бездротовий PC',           brand:'Logitech',   price:4990,  old:6990,   cat:'gaming',     badge:'sale',rating:4.5,rev:567, svg:'gamepad'},
+{id:28, name:'SteelSeries Arctis Pro Wireless',        brand:'SteelSeries',price:19990, old:24990,  cat:'gaming',     badge:'sale',rating:4.8,rev:432, svg:'headphones'},
+// МОНІТОРИ
+{id:29, name:'ASUS ROG Swift OLED PG32UCDM 4K 240Гц', brand:'ASUS',       price:119990,old:139990, cat:'monitor',    badge:'sale',rating:4.9,rev:187, svg:'monitor'},
+{id:30, name:'LG 27GP950-B 4K 160Гц Nano IPS',        brand:'LG',         price:59990, old:null,   cat:'monitor',    badge:'new', rating:4.7,rev:189, svg:'monitor'},
+{id:31, name:'Dell UltraSharp U3423WE 34" QD-OLED',   brand:'Dell',       price:74990, old:84990,  cat:'monitor',    badge:'sale',rating:4.9,rev:143, svg:'monitor'},
+{id:32, name:'Samsung Odyssey G9 49" OLED 240Гц',     brand:'Samsung',    price:129990,old:149990, cat:'monitor',    badge:'sale',rating:4.8,rev:312, svg:'monitor'},
+{id:33, name:'ASUS ProArt PA329CRV 32" 4K IPS',       brand:'ASUS',       price:69990, old:79990,  cat:'monitor',    badge:'sale',rating:4.8,rev:234, svg:'monitor'},
+// НАКОПИЧУВАЧІ
+{id:34, name:'Samsung 990 Pro 2TB NVMe M.2 PCIe 4',   brand:'Samsung',    price:18990, old:22990,  cat:'storage',    badge:'sale',rating:4.7,rev:567, svg:'ssd'},
+{id:35, name:'WD Black SN850X 4TB NVMe PCIe 4',       brand:'WD',         price:24990, old:29990,  cat:'storage',    badge:'sale',rating:4.8,rev:345, svg:'ssd'},
+{id:36, name:'Crucial T700 2TB PCIe 5.0 NVMe',        brand:'Crucial',    price:21990, old:25990,  cat:'storage',    badge:'new', rating:4.9,rev:123, svg:'ssd'},
+{id:37, name:'Seagate IronWolf Pro 20TB NAS HDD',      brand:'Seagate',    price:24990, old:null,   cat:'storage',    badge:null,  rating:4.7,rev:234, svg:'hdd'},
+{id:38, name:'Samsung T9 Portable SSD 4TB USB 3.2',   brand:'Samsung',    price:16990, old:null,   cat:'storage',    badge:'new', rating:4.8,rev:189, svg:'ssd'},
+// ПЕРИФЕРІЯ
+{id:39, name:'Logitech MX Keys S Plus Wireless',       brand:'Logitech',   price:12990, old:14990,  cat:'periphery',  badge:'sale',rating:4.8,rev:876, svg:'keyboard'},
+{id:40, name:'Keychron Q3 QMK 75% Barebone',          brand:'Keychron',   price:14990, old:null,   cat:'periphery',  badge:'top', rating:4.9,rev:432, svg:'keyboard'},
+{id:41, name:'Logitech MX Master 3S Graphite',        brand:'Logitech',   price:8990,  old:10990,  cat:'periphery',  badge:'sale',rating:4.9,rev:1234,svg:'mouse'},
+{id:42, name:'Razer DeathAdder V3 HyperSpeed',        brand:'Razer',      price:7990,  old:9990,   cat:'periphery',  badge:'sale',rating:4.7,rev:567, svg:'mouse'},
+{id:43, name:'Elgato Stream Deck MK.2 Black',         brand:'Elgato',     price:12990, old:14990,  cat:'periphery',  badge:'sale',rating:4.8,rev:876, svg:'keyboard'},
+// МЕРЕЖА
+{id:44, name:'ASUS ROG Rapture GT-BE98 WiFi 7',       brand:'ASUS',       price:34990, old:39990,  cat:'network',    badge:'new', rating:4.8,rev:123, svg:'router'},
+{id:45, name:'TP-Link Archer BE900 WiFi 7',           brand:'TP-Link',    price:24990, old:null,   cat:'network',    badge:'new', rating:4.7,rev:89,  svg:'router'},
+{id:46, name:'Ubiquiti UniFi U7 Pro WiFi 7 AP',       brand:'Ubiquiti',   price:19990, old:null,   cat:'network',    badge:'top', rating:4.9,rev:234, svg:'router'},
+{id:47, name:'Netgear Nighthawk RS700S BE19000',       brand:'Netgear',    price:29990, old:34990,  cat:'network',    badge:'sale',rating:4.6,rev:67,  svg:'router'},
+// РОЗУМНИЙ ДІМ
+{id:48, name:'Apple HomePod 2023 Білий',               brand:'Apple',      price:29990, old:34990,  cat:'smart',      badge:'sale',rating:4.8,rev:456, svg:'speaker'},
+{id:49, name:'Philips Hue Starter Kit E27 4 лампи',   brand:'Philips',    price:8990,  old:11990,  cat:'smart',      badge:'sale',rating:4.7,rev:876, svg:'smarthome'},
+{id:50, name:'Xiaomi Robot Vacuum X20 Max 7000Па',    brand:'Xiaomi',     price:44990, old:54990,  cat:'smart',      badge:'sale',rating:4.7,rev:321, svg:'smarthome'},
+{id:51, name:'Aqara Hub M3 + 10 датчиків',            brand:'Aqara',      price:12990, old:null,   cat:'smart',      badge:'new', rating:4.6,rev:143, svg:'smarthome'},
+{id:52, name:'Google Nest Hub Max 10" дисплей',       brand:'Google',     price:19990, old:23990,  cat:'smart',      badge:'sale',rating:4.7,rev:289, svg:'smarthome'},
+// АКСЕСУАРИ
+{id:53, name:'Anker 733 GaNPrime 65W 3-в-1',          brand:'Anker',      price:4990,  old:5990,   cat:'accessories',badge:'sale',rating:4.8,rev:1234,svg:'charger'},
+{id:54, name:'Ugreen MagSafe Powerbank 10000 мАг',    brand:'Ugreen',     price:6990,  old:null,   cat:'accessories',badge:'new', rating:4.7,rev:432, svg:'powerbank'},
+{id:55, name:'Baseus 240W USB-C кабель 2м',           brand:'Baseus',     price:1490,  old:1990,   cat:'accessories',badge:'sale',rating:4.6,rev:2341,svg:'cable'},
+{id:56, name:'Belkin MagSafe 15W Charger iPhone 15',  brand:'Belkin',     price:3490,  old:null,   cat:'accessories',badge:null,  rating:4.5,rev:567, svg:'charger'},
+{id:57, name:'ESR HaloLock 3-в-1 MagSafe Stand',      brand:'ESR',        price:7990,  old:9990,   cat:'accessories',badge:'sale',rating:4.7,rev:345, svg:'charger'},
+];
+
+const PRESETS={
+  gaming_pc:[1,2,4,6,7,8,9,29,39,41],
+  office_pc:[3,5,6,7,8,33,39,41],
+  streaming:[2,4,6,22,43,30,39,41],
+  budget:   [3,5,7,8,30,39,41,42],
+  creator:  [1,2,4,6,29,39,41,34],
+};
+
+let cart=JSON.parse(localStorage.getItem('tm_cart')||'[]');
+let curCat='all',curSort='def',curPreset='gaming_pc',filtered=[...P];
+
+function hrn(n){return n.toLocaleString('uk')+'₴'}
+function stars(r){return'★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r))}
+
+// RENDER GRID
+function renderGrid(list){
+  const g=document.getElementById('grid');
+  document.getElementById('pcount').textContent=list.length;
+  if(!list.length){
+    g.innerHTML=`<div class="empty"><div class="ei">🔍</div><h3>Товари не знайдено</h3><p>Спробуйте змінити фільтри</p></div>`;
+    return;
+  }
+  const bl={sale:'Знижка',new:'Новинка',top:'Хіт'};
+  g.innerHTML=list.map(p=>{
+    const inC=cart.some(c=>c.id===p.id);
+    const disc=p.old&&p.old>p.price;
+    return`<div class="pc">
+      ${p.badge?`<div class="pba ${p.badge}">${bl[p.badge]}</div>`:''}
+      <div class="pimg">${S[p.svg]||S.cpu}</div>
+      <div class="pi2">
+        <div class="pbrand">${p.brand}</div>
+        <div class="pname">${p.name}</div>
+        <div class="prat"><span class="stars">${stars(p.rating)}</span><span class="rn">${p.rating} (${p.rev})</span></div>
+        <div class="ppr">
+          <div class="pblk">
+            ${disc?`<div class="pold">${hrn(p.old)}</div>`:''}
+            <div class="pnew${disc?' disc':''}">${hrn(p.price)}</div>
+          </div>
+          <button class="addbtn${inC?' added':''}" onclick="addCart(${p.id},event)">${inC?'✓':'+'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// BRANDS
+function renderBrands(){
+  const br=[...new Set(P.map(p=>p.brand))].sort();
+  document.getElementById('brandF').innerHTML=br.map(b=>`<label class="fo"><input type="checkbox" checked onchange="doFilter()"> ${b}</label>`).join('');
+}
+
+// FILTER
+function setCat(cat,el,isChip=false){
+  curCat=cat;
+  if(!isChip){document.querySelectorAll('.nt').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  if(isChip) el.classList.add('active');
+  doFilter();
+}
+function doFilter(){
+  const q=document.getElementById('sInput').value.toLowerCase();
+  const mn=parseFloat(document.getElementById('pMin').value)||0;
+  const mx=parseFloat(document.getElementById('pMax').value)||Infinity;
+  const br=[...document.querySelectorAll('#brandF input:checked')].map(c=>c.parentElement.textContent.trim());
+  filtered=P.filter(p=>{
+    if(curCat!=='all'&&p.cat!==curCat) return false;
+    if(p.price<mn||p.price>mx) return false;
+    if(!p.name.toLowerCase().includes(q)&&!p.brand.toLowerCase().includes(q)) return false;
+    if(!br.includes(p.brand)) return false;
+    return true;
+  });
+  applySort();
+}
+function sortP(v){curSort=v;doFilter();}
+function applySort(){
+  const s=[...filtered];
+  if(curSort==='asc') s.sort((a,b)=>a.price-b.price);
+  else if(curSort==='desc') s.sort((a,b)=>b.price-a.price);
+  else if(curSort==='rat') s.sort((a,b)=>b.rating-a.rating);
+  else if(curSort==='name') s.sort((a,b)=>a.name.localeCompare(b.name,'uk'));
+  renderGrid(s);
+}
+
+// CART
+function addCart(id,e){
+  if(e) e.stopPropagation();
+  const p=P.find(x=>x.id===id); if(!p) return;
+  const ex=cart.find(c=>c.id===id);
+  if(ex) ex.qty++;else cart.push({...p,qty:1});
+  save(); doFilter();
+  toast(`✅ ${p.name.split(' ').slice(0,3).join(' ')} — у кошику`);
+}
+function remCart(id){cart=cart.filter(c=>c.id!==id);save();renderCart();}
+function chgQty(id,d){const i=cart.find(c=>c.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)remCart(id);else{save();renderCart();}}
+function save(){
+  localStorage.setItem('tm_cart',JSON.stringify(cart));
+  document.getElementById('cCount').textContent=cart.reduce((s,c)=>s+c.qty,0);
+  renderCart();
+}
+function openCart(){document.getElementById('cpanel').classList.add('open');document.getElementById('ov').classList.add('open');document.body.style.overflow='hidden';}
+function closeCart(){document.getElementById('cpanel').classList.remove('open');document.getElementById('ov').classList.remove('open');document.body.style.overflow='';}
+function checkout(){
+  if(!cart.length){toast('⚠️ Кошик порожній');return;}
+  toast('🎉 Замовлення оформлено! Дякуємо!');cart=[];save();closeCart();
+}
+function renderCart(){
+  const list=document.getElementById('cilist');
+  const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const qty=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cqty').textContent=qty;
+  document.getElementById('csub2').textContent=hrn(tot);
+  document.getElementById('ctot3').textContent=hrn(tot);
+  if(!cart.length){list.innerHTML=`<div class="cempty"><div class="ei">🛒</div><p>Кошик порожній</p><p style="font-size:11px;margin-top:4px">Додайте товари з каталогу</p></div>`;return;}
+  list.innerHTML=cart.map(item=>`
+    <div class="ci">
+      <div class="cithumb">${S[item.svg]||S.cpu}</div>
+      <div class="cii">
+        <div class="cin">${item.name}</div>
+        <div class="cip">${hrn(item.price*item.qty)}</div>
+        <div class="qc">
+          <button class="qb" onclick="chgQty(${item.id},-1)">−</button>
+          <span class="qn">${item.qty}</span>
+          <button class="qb" onclick="chgQty(${item.id},1)">+</button>
+        </div>
+      </div>
+      <button class="rb" onclick="remCart(${item.id})">🗑</button>
+    </div>`).join('');
+}
+
+// PRESETS
+function selPreset(name,el){
+  curPreset=name;
+  document.querySelectorAll('.pb').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderPreview();
+}
+function applyP(name){
+  curPreset=name;
+  const idx=['gaming_pc','office_pc','streaming','budget','creator'].indexOf(name);
+  document.querySelectorAll('.pb').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  renderPreview();
+  document.getElementById('bld').scrollIntoView({behavior:'smooth'});
+}
+function renderPreview(){
+  const ids=PRESETS[curPreset]||[];
+  const items=ids.map(id=>P.find(p=>p.id===id)).filter(Boolean);
+  document.getElementById('cprice').textContent=hrn(items.reduce((s,p)=>s+p.price,0));
+  document.getElementById('cprev').innerHTML=items.map(p=>`
+    <div class="cpi" onclick="addCart(${p.id},event)" title="${p.name}">
+      <div class="cpimg">${S[p.svg]||S.cpu}</div>
+      <div class="cpn">${p.name.split(' ').slice(0,2).join(' ')}</div>
+    </div>`).join('');
+}
+function addColl(){
+  const ids=PRESETS[curPreset]||[];
+  ids.forEach(id=>{const p=P.find(x=>x.id===id);if(!p)return;const ex=cart.find(c=>c.id===id);if(ex)ex.qty++;else cart.push({...p,qty:1});});
+  save(); doFilter();
+  toast(`✅ Збірку додано до кошика (${ids.length} товарів)`);
+}
+
+// TOAST
+let tT;
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// INIT
+renderBrands();doFilter();renderPreview();
+document.getElementById('cCount').textContent=cart.reduce((s,c)=>s+c.qty,0);
+renderCart();
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Done"
